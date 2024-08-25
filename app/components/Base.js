@@ -4,27 +4,40 @@ const inter = Inter({ subsets: ["latin"] });
 import Image from "next/image";
 import { useState } from "react";
 import Toast from "./Toast.js";
+import { books } from "../data/books";
 
 function Base() {
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
-    gener: "",
-    auther: "",
+    genre: "",
+    author: "",
     description: "",
   });
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    const response = await fetch("/api/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
       setIsToastVisible(true);
+      setTimeout(() => setIsToastVisible(false), 3000); // Hide toast after 3 seconds
       setFormData({
         title: e.target.title.value,
-        genre: e.target.gener.value,  // Corrected "gener" to "genre"
-        author: e.target.auther.value,  // Corrected "auther" to "author"
+        genre: e.target.genre.value,
+        author: e.target.author.value,
         description: e.target.description.value,
       });
-
+    } else {
+      alert("Failed to save data.");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -64,34 +77,34 @@ function Base() {
                 </div>
                 <div className="mb-5">
                   <label
-                    htmlFor="gener"
+                    htmlFor="genre"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Gener
+                    Genre
                   </label>
                   <input
                     type="text"
-                    id="gener"
+                    id="genre"
                     placeholder="Fantasy, Horror, Thriller"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    value={formData.gener}
+                    value={formData.genre}
                     onChange={handleInputChange}
                     required
                   />
                 </div>
                 <div className="mb-5">
                   <label
-                    htmlFor="auther"
+                    htmlFor="author"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Auther
+                    Author
                   </label>
                   <input
                     type="text"
-                    id="auther"
+                    id="author"
                     placeholder="George Martin"
                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    value={formData.auther}
+                    value={formData.author}
                     onChange={handleInputChange}
                     required
                   />

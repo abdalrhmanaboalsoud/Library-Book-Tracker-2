@@ -1,4 +1,4 @@
-import { books } from "../data/books";
+import { books } from "../data/books.js";
 import useSortedBooks from "../sortingHook/Hook"; // Corrected the import
 
 function Card() {
