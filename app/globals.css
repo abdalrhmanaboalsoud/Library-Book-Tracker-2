@@ -30,5 +30,20 @@ body {
   }
 }
 
+/* globals.css */
+
+.dark-theme-class {
+  background-color: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));  
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.light-theme-class {
+  background-color: rgb(var(--background-end-rgb));
+  color: rgb(var(--foreground-rgb));
+  padding: 20px;
+  border-radius: 10px;
+}
 
 

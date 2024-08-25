@@ -58,7 +58,7 @@ function Base() {
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
           <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
             <div className="flex flex-col lg:flex-row justify-between w-full">
-              <form className="max-w-md mx-5 w-full" onSubmit={submitHandler}>
+            <form className="max-w-md mx-5 w-full text-gray-900 dark:text-gray-300" onSubmit={submitHandler}>
                 {/* Form Fields */}
                 <div className="mb-5">
                   <label
