@@ -1,8 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
 import Link from 'next/link';
+import { ThemeContext } from "../context/theme";
 function Header() {
+  const {isDarktheme, toggleThemeHandler} = useContext(ThemeContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -100,6 +102,10 @@ function Header() {
                   </a>
                 </div>
               </div>
+            </div>
+            <div>
+            <button type="button" onClick={toggleThemeHandler} className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Theme</button>
+
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
